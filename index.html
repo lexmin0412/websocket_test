@@ -26,7 +26,13 @@
             }
 
             // 打开一个 web socket
-            var ws = new WebSocket( socketAddress );
+            try {
+               var ws = new WebSocket( socketAddress );
+            } catch (error) {
+               console.log('socket创建error', error)
+               console.log('检测到当前地址不合法，请检查您的socket url后重试')
+               return
+            }
 
             ws.onopen = function () {
                // Web Socket 已连接上，使用 send() 方法发送数据
