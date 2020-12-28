@@ -3,10 +3,14 @@
 
 <head>
    <meta charset="utf-8">
-   <title>菜鸟教程(runoob.com)</title>
+   <title>websocket测试</title>
    <link rel="stylesheet" href="./index.css">
 
    <script type="text/javascript">
+      // socket是否连接成功
+      let socketConnected = false
+
+      // 连接websocket
       function WebSocketTest() {
          if ( "WebSocket" in window ) {
             console.log( "您的浏览器支持 WebSocket!" );
@@ -26,22 +30,37 @@
 
             ws.onopen = function () {
                // Web Socket 已连接上，使用 send() 方法发送数据
-               ws.send( "发送数据" );
-               console.log( "数据发送中..." );
+               // ws.send( "发送数据" );
+               console.log('socket连接成功')
+               socketConnected = true
+               // console.log( "数据发送中..." );
             };
 
             ws.onmessage = function ( evt ) {
                var received_msg = evt.data;
-               console.log( '数据已接收', received_msg )
+               console.log( 'socket数据已接收', received_msg )
             };
 
             ws.onclose = function () {
+               socketConnected = false
                // 关闭 websocket
-               console.log( '连接已关闭' )
+               console.log( 'socket连接已关闭' )
             };
          } else {
             // 浏览器不支持 WebSocket
             alert( "您的浏览器不支持 WebSocket!" );
+         }
+      }
+
+      // 发送socket消息
+      sendMsg = () => {
+         if ( socketConnected ) {
+            console.log('send msg')
+            const msg = document.getElementById('msg-input')
+            console.log('即将发送消息', msg.value)
+            ws.send( msg.value );
+         } else {
+            console.log('当前socket已断开，请先连接后再发送消息哦～')
          }
       }
    </script>
@@ -51,9 +70,15 @@
 <body>
 
    <div id="sse">
-      <input type="text" placeholder="请输入socket连接地址" id="socket_input" />
-      <div class="work-box">
-         <a href="javascript:WebSocketTest()">运行 WebSocket</a>
+      <div class="socket-address input-box">
+         <div class="input-label">socket地址：</div>
+         <input type="text" placeholder="请输入socket连接地址" id="socket_input" />
+         <button class="input-btn" onclick="WebSocketTest()">连接websocket</button>
+      </div>
+      <div class="send-msg input-box">
+         <div class="input-label">消息内容：</div>
+         <input type="text" id="msg-input" placeholder="请输入消息内容">
+         <button class="input-btn" onclick="sendMsg()">发送消息</button>
       </div>
       <br>
       <br>

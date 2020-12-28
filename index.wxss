@@ -6,13 +6,26 @@
   text-align: center;
   transform: translate(-50%, -50%);
 }
-input {
+.input-box {
+  display: flex;
+  align-items: center;
+  margin: 0 auto 20px;
+  justify-content: center;
+}
+.input-box .input-label {
+  width: 150px;
+}
+.input-box input {
   display: block;
   width: 500px;
   height: 50px;
   border: 2px solid #999;
   text-align: center;
-  margin: 0 auto;
+}
+.input-box .input-btn {
+  width: 100px;
+  text-align: center;
+  margin-left: 10px;
 }
 .work-box {
   margin-top: 20px;

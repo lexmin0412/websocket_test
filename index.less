@@ -7,13 +7,29 @@
   transform: translate(-50%, -50%);
 }
 
-input {
-  display: block;
-  width: 500px;
-  height: 50px;
-  border: 2px solid #999;
-  text-align: center;
-  margin: 0 auto
+.input-box {
+  display: flex;
+  align-items: center;
+  margin: 0 auto 20px;
+  justify-content: center;
+
+  .input-label {
+    width: 150px;
+  }
+
+  input {
+    display: block;
+    width: 500px;
+    height: 50px;
+    border: 2px solid #999;
+    text-align: center;
+  }
+
+  .input-btn {
+    width: 100px;
+    text-align: center;
+    margin-left: 10px;
+  }
 }
 
 .work-box {
