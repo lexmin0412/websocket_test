@@ -9,6 +9,7 @@
    <script type="text/javascript">
       // socket是否连接成功
       let socketConnected = false
+      let ws = null
 
       // 连接websocket
       function WebSocketTest() {
@@ -27,7 +28,7 @@
 
             // 打开一个 web socket
             try {
-               var ws = new WebSocket( socketAddress );
+               ws = new WebSocket( socketAddress );
             } catch (error) {
                console.log('socket创建error', error)
                console.log('检测到当前地址不合法，请检查您的socket url后重试')
